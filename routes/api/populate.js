@@ -4,6 +4,8 @@ const axios = require('axios')
 const moment = require('moment')
 const ConsumptionBySector = require('../../models/ConsumptionBySector')
 const ProductionBySource = require('../../models/ProductionBySource')
+const Emissions = require('../../models/Emissions')
+const Expenditure = require('../../models/Expenditure')
 
 
 const router = express.Router()
@@ -13,7 +15,7 @@ const baseURI = config.get('eiaBaseURI')
 
 //Post all historic data from EIA to MONGO
 router.get('/', async (req, res) => {
-  //Total Energy Consumed By Sector
+  //TOTAL ENERGY CONSUMED BY SECTOR
   // try {
 
   //   const commercialData = await axios.get(`${baseURI}&series_id=TOTAL.TECCBUS.M`)
@@ -45,7 +47,7 @@ router.get('/', async (req, res) => {
   //   process.exit(1)
   // }
 
-//Net Production by source
+//NET PRODUCTION BY SOURCE
 //   const rawData = [
 //     {
 //       name: 'coalProduction',
@@ -142,7 +144,64 @@ router.get('/', async (req, res) => {
 //     console.error(e.message)
 //     process.exit(1)
 //   }
-
+//EMISSIONS AND ECONOMY
+// try {
+//     const emissionsData = await axios.get(`${baseURI}&series_id=TOTAL.TETCEUS.A&num=10`)
+//     const rawEmissions = emissionsData.data.series[0]
+//     // const expenseData = await axios.get(`${baseURI}&series_id=TOTAL.TEICBUS.M`)
+//     // const expense = industrialData.data.series[0]
+//     let emissions = []
+//     rawEmissions.data.map((edge, i) => {
+//       emissions = [
+//         ...emissions,
+//         {
+//           name: rawEmissions.name,
+//           period: edge[0],
+//           value: edge[1],
+//           unit: rawEmissions.units
+//         }
+//       ]
+//     })
+//     Emissions.collection.insertMany(emissions).then(() => res.status(200).send())
+// } catch (e) {
+//   console.error(e.message)
+//   process.exit(1)
+// }
+try {
+  const averageRetailPriceData = await axios.get(`${baseURI}&series_id=TOTAL.ESTCUUS.A&num=10`)
+  const rawAverageRetailPrice = averageRetailPriceData.data.series[0]
+  let averageRetailPrice = []
+  rawAverageRetailPrice.data.map((edge, i) => {
+    averageRetailPrice = [
+      ...averageRetailPrice,
+      {
+        name: rawAverageRetailPrice.name,
+        period: edge[0],
+        value: edge[1],
+        unit: rawAverageRetailPrice.units
+      }
+    ]
+  })
+  const energyExpendituresData = await axios.get(`${baseURI}&series_id=TOTAL.TETCVUS.A&num=10`)
+  const rawEnergyExpenditures = energyExpendituresData.data.series[0]
+  let energyExpenditures = []
+  rawEnergyExpenditures.data.map((edge, i) => {
+    energyExpenditures = [
+      ...energyExpenditures,
+      {
+        name: rawEnergyExpenditures.name,
+        period: edge[0],
+        value: edge[1],
+        unit: rawEnergyExpenditures.units
+      }
+    ]
+  })
+  console.log(averageRetailPrice, energyExpenditures)
+  Expenditure.collection.insertMany([...averageRetailPrice,...energyExpenditures]).then(() => res.status(200).send())
+} catch (e) {
+console.error(e.message)
+process.exit(1)
+}
 })
 
 module.exports = router
