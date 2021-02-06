@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+//Local
+import store from './store';
+import theme from './styles/Theme';
+import Landing from './pages/Landing';
+import NavBar from './components/layout/NavBar';
+import Footer from './components/layout/Footer';
+import Alert from './components/layout/Alert';
 import './App.css';
+//Material-UI
+import { ThemeProvider } from '@material-ui/core/styles';
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <NavBar />
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+          </Switch>
+        </Router>
+        <Alert />
+        <Footer />
+      </ThemeProvider>
+    </Provider>
   );
-}
+};
 
 export default App;

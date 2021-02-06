@@ -1,0 +1,8 @@
+export const SET_ALERT = 'SET_ALERT'
+export const REMOVE_ALERT = 'REMOVE_ALERT'
+export const GET_NPBS = 'GET_NPBS'
+export const GET_CBS = 'GET_CBS'
+export const GET_EMISSIONS = 'GET_EMISSIONS'
+export const GET_EXPENDITURES = 'GET_EXPENDITURES'
+export const GET_FORECAST = 'GET_FORECAST'
+export const POST_FORECAST = 'POST_FORECAST'
