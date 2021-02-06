@@ -40,7 +40,11 @@ const XYChartWrapper = ({ npbs }) => {
   };
   return (
     <Card className={classes.chartWrapper}>
-      <FormControl className={classes.formControl} variant="outlined">
+      <FormControl
+        size="small"
+        className={classes.formControl}
+        variant="outlined"
+      >
         <Select value={source} onChange={handleChange}>
           <MenuItem value="Natural Gas">Natural Gas</MenuItem>
           <MenuItem value="Coal">Coal</MenuItem>

@@ -1,28 +1,51 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const ConsumptionBySectorSchema = new mongoose.Schema({
   month: {
     type: Date,
     required: true,
   },
-  data: {
-    commercialSector: {
-      type: Number
+  data: [
+    {
+      sector: {
+        type: String,
+      },
+      value: {
+        type: Number,
+      },
     },
-    industrialSector: {
-      type: Number
+    {
+      sector: {
+        type: String,
+      },
+      value: {
+        type: Number,
+      },
     },
-    residentialSector: {
-      type: Number
+    {
+      sector: {
+        type: String,
+      },
+      value: {
+        type: Number,
+      },
     },
-    transportationSector: {
-      type: Number
+    {
+      sector: {
+        type: String,
+      },
+      value: {
+        type: Number,
+      },
     },
-  },
+  ],
   date: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-module.exports = ConsumptionBySector = mongoose.model('consumptionBySector', ConsumptionBySectorSchema)
+module.exports = ConsumptionBySector = mongoose.model(
+  'consumptionBySector',
+  ConsumptionBySectorSchema
+);

@@ -16,58 +16,17 @@ const XYChart = ({ npbs, source }) => {
     const rawData = [...npbs].reverse();
     x.paddingRight = 20;
     const data = rawData.map((d) => {
-      switch (source) {
-        case 'Coal':
-          return {
-            month: d.month,
-            production: d.data.coal.production,
-            consumption: d.data.coal.consumption,
-          };
-        case 'Geothermal':
-          return {
-            month: d.month,
-            production: d.data.geothermal.production,
-            consumption: d.data.geothermal.consumption,
-          };
-        case 'Hydroelectric':
-          return {
-            month: d.month,
-            production: d.data.hydroelectric.production,
-            consumption: d.data.hydroelectric.consumption,
-          };
-        case 'Natural Gas':
-          return {
-            month: d.month,
-            production: d.data.naturalGas.production,
-            consumption: d.data.naturalGas.consumption,
-          };
-        case 'Nuclear':
-          return {
-            month: d.month,
-            production: d.data.nuclear.production,
-            consumption: d.data.nuclear.consumption,
-          };
-        case 'Solar':
-          return {
-            month: d.month,
-            production: d.data.solar?.production,
-            consumption: d.data.solar?.consumption,
-          };
-        case 'Wind':
-          return {
-            month: d.month,
-            production: d.data.wind?.production,
-            consumption: d.data.wind?.consumption,
-          };
-        default:
-          return {
-            month: d.month,
-            production: d.data.coal.production,
-            consumption: d.data.coal.consumption,
-          };
-      }
+      const sourceData = d.data.filter(
+        (sourceValue) => sourceValue.source === source
+      );
+      console.log(sourceData.consumption);
+      return {
+        month: d.month,
+        production: sourceData[0].production,
+        consumption: sourceData[0].consumption,
+      };
     });
-
+    console.log(data);
     x.data = data;
     x.responsive.enabled = true;
     let dateAxis = x.xAxes.push(new am4charts.DateAxis());

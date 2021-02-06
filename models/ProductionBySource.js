@@ -1,72 +1,96 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const ProductionBySourceSchema = new mongoose.Schema({
   month: {
     type: Date,
     required: true,
   },
-  data: {
-    coal: {
+  data: [
+    {
+      source: {
+        type: String,
+      },
       production: {
-        type: Number
+        type: Number,
       },
       consumption: {
-        type: Number
-      }
+        type: Number,
+      },
     },
-    geothermal: {
+    {
+      source: {
+        type: String,
+      },
       production: {
-        type: Number
+        type: Number,
       },
       consumption: {
-        type: Number
-      }
+        type: Number,
+      },
     },
-    hydroelectric: {
+    {
+      source: {
+        type: String,
+      },
       production: {
-        type: Number
+        type: Number,
       },
       consumption: {
-        type: Number
-      }
+        type: Number,
+      },
     },
-    naturalGas: {
+    {
+      source: {
+        type: String,
+      },
       production: {
-        type: Number
+        type: Number,
       },
       consumption: {
-        type: Number
-      }
+        type: Number,
+      },
     },
-    nuclear: {
+    {
+      source: {
+        type: String,
+      },
       production: {
-        type: Number
+        type: Number,
       },
       consumption: {
-        type: Number
-      }
+        type: Number,
+      },
     },
-    solar: {
+    {
+      source: {
+        type: String,
+      },
       production: {
-        type: Number
+        type: Number,
       },
       consumption: {
-        type: Number
-      }
+        type: Number,
+      },
     },
-    wind: {
+    {
+      source: {
+        type: String,
+      },
       production: {
-        type: Number
+        type: Number,
       },
       consumption: {
-        type: Number
-      }
+        type: Number,
+      },
     },
-  },
+  ],
   date: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-module.exports = ProductionBySource = mongoose.model('productionBySource', ProductionBySourceSchema)
+module.exports = ProductionBySource = mongoose.model(
+  'productionBySource',
+  ProductionBySourceSchema
+);

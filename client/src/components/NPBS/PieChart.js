@@ -5,49 +5,28 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 
 am4core.useTheme(am4themes_animated);
 
-const PieChart = ({ npbs }) => {
+const PieChart = ({ npbs, type }) => {
   const chart = useRef(null);
-
+  const colors = [
+    '#ff5722',
+    '#e77200',
+    '#cc8600',
+    '#ae9500',
+    '#90a000',
+    '#70a92c',
+    '#4caf50',
+  ];
   useLayoutEffect(() => {
     let y = am4core.create('piechartdiv', am4charts.PieChart);
     const data = npbs.map((d) => {
-      return [
-        {
-          source: 'Coal',
-          value: d.data.coal.production,
-          color: am4core.color('#ff5722'),
-        },
-        {
-          source: 'Geothermal',
-          value: d.data.geothermal.production,
-          color: am4core.color('#e77200'),
-        },
-        {
-          source: 'Hydroelectric',
-          value: d.data.hydroelectric.production,
-          color: am4core.color('#cc8600'),
-        },
-        {
-          source: 'Nuclear',
-          value: d.data.nuclear.production,
-          color: am4core.color('#ae9500'),
-        },
-        {
-          source: 'Solar',
-          value: d.data.solar?.production,
-          color: am4core.color('#90a000'),
-        },
-        {
-          source: 'Wind',
-          value: d.data.wind?.production,
-          color: am4core.color('#70a92c'),
-        },
-        {
-          source: 'Natural Gas',
-          value: d.data.naturalGas.production,
-          color: am4core.color('#4caf50'),
-        },
-      ];
+      const unit = d.data.map((values, i) => {
+        return {
+          source: values.source,
+          value: type === 'production' ? values.production : values.consumption,
+          color: colors[i],
+        };
+      });
+      return unit;
     });
     y.data = data[0];
     y.responsive.enabled = true;

@@ -11,12 +11,12 @@ import {
 } from '../actions/data';
 import XYChartWrapper from '../components/NPBS/XYChartWrapper';
 import PieChartWrapper from '../components/NPBS/PieChartWrapper';
+import DataTable from '../components/NPBS/DataTable';
 //Material-UI
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-
 const useStyles = makeStyles((theme) => ({
   spinner: {
     margin: 'auto',
@@ -63,7 +63,7 @@ export const Landing = ({
           <XYChartWrapper />
         </GridListTile>
         <GridListTile cols={2.5}>
-          <PieChartWrapper />
+          <DataTable />
         </GridListTile>
       </GridList>
     </div>
