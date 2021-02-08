@@ -62,10 +62,7 @@ router.get('/', async (req, res) => {
       totalEnergyConsumedBySector
     );
     res.status(200).send();
-  } catch (e) {
-    console.error(e.message);
-    process.exit(1);
-  }
+  } catch (e) {}
 
   //NET PRODUCTION BY SOURCE
   // const rawData = [

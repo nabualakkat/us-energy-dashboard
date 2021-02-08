@@ -41,31 +41,16 @@ const XYChartWrapper = ({ npbs }) => {
   };
   return (
     <Card className={classes.chartWrapper}>
-      <FormControl
-        size="small"
-        className={classes.formControl}
-        variant="outlined"
-      >
-        <Select value={source} onChange={handleChange}>
-          <MenuItem value="Natural Gas">Natural Gas</MenuItem>
-          <MenuItem value="Coal">Coal</MenuItem>
-          <MenuItem value="Nuclear">Nuclear</MenuItem>
-          <MenuItem value="Wind">Wind</MenuItem>
-          <MenuItem value="Hydroelectric">Hydroelectric</MenuItem>
-          <MenuItem value="Solar">Solar</MenuItem>
-          <MenuItem value="Geothermal">Geothermal</MenuItem>
-        </Select>
-      </FormControl>
       <Typography className={classes.title} variant="h6">
         {`Production / Consumption of ${source}`}
       </Typography>
-      <XYChart npbs={npbs} source={source} />
+      <BarChart cbs={cbs} source={source} />
     </Card>
   );
 };
 
 const mapStateToProps = (state) => ({
-  npbs: state.data.npbs.data,
+  cbs: state.data.cbs.data,
 });
 
-export default connect(mapStateToProps)(XYChartWrapper);
+export default connect(mapStateToProps)(BarChartWrapper);

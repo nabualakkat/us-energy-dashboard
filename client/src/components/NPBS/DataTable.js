@@ -22,11 +22,11 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const useStyles = makeStyles((theme) => ({
   chartWrapper: {
-    position: 'relative',
     padding: '1rem',
+    width: 'auto',
     margin: '0.5rem',
-    maxWidth: '400px',
-    height: '330px',
+    height: '98%',
+    boxSizing: 'border-box',
   },
   title: {
     textAlign: 'center',
@@ -39,9 +39,13 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     width: '100%',
+    height: 'auto%',
+    marginBottom: '1rem',
+    boxSizing: 'border-box',
   },
   cell: {
     paddingInline: 0,
+    paddingBlock: '0.75rem',
   },
 }));
 
@@ -80,7 +84,7 @@ const DataTable = ({ npbs }) => {
           </IconButton>
         </Grid>
       </Grid>
-      <Table className={classes.table} size="small" aria-label="npbs-table">
+      <Table className={classes.table} aria-label="npbs-table">
         <TableHead>
           <TableRow>
             <TableCell className={classes.cell}>Source</TableCell>
@@ -100,7 +104,7 @@ const DataTable = ({ npbs }) => {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.source}>
+            <TableRow className={classes.row} key={row.source}>
               <TableCell className={classes.cell} component="th" scope="row">
                 {row.source}
               </TableCell>

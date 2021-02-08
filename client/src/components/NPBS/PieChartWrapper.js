@@ -14,11 +14,11 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   chartWrapper: {
-    position: 'relative',
     padding: '1rem',
+    width: 'auto',
     margin: '0.5rem',
-    maxWidth: '400px',
-    height: '330px',
+    height: '98%',
+    boxSizing: 'border-box',
   },
   title: {
     textAlign: 'center',
@@ -27,49 +27,23 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '.8rem',
   },
   buttonGroup: {
-    position: 'absolute',
-    top: '25%',
-    left: '5%',
+    width: '100%',
     fontSize: '.8rem',
     zIndex: 1000,
   },
   button: {
     fontSize: '0.5rem',
+    width: '50%',
   },
 }));
 
 const PieChartWrapper = ({ npbs }) => {
   const classes = useStyles();
-  const [value, setValue] = useState('production');
+  const [value, setValue] = useState('Production');
   return (
     <Card className={classes.chartWrapper}>
-      <ButtonGroup
-        className={classes.buttonGroup}
-        size="small"
-        variant="contained"
-        aria-label="outlined primary button group"
-      >
-        <Button
-          onClick={() => setValue('production')}
-          color={value === 'production' ? 'primary' : 'default'}
-          disableElevation={value === 'production'}
-          disableRipple
-          className={classes.button}
-        >
-          Production
-        </Button>
-        <Button
-          onClick={() => setValue('consumption')}
-          color={value === 'consumption' ? 'primary' : 'default'}
-          disableElevation={value === 'consumption'}
-          disableRipple
-          className={classes.button}
-        >
-          Consumption
-        </Button>
-      </ButtonGroup>
       <Typography className={classes.title} variant="h6">
-        Total Production by Source
+        Total {value} by Source
       </Typography>
       <Typography
         className={`${classes.title} ${classes.subtitle}`}
@@ -77,6 +51,31 @@ const PieChartWrapper = ({ npbs }) => {
       >
         Latest Available: {moment(npbs[0].month).format('MMM YYYY')}
       </Typography>
+      <ButtonGroup
+        className={classes.buttonGroup}
+        size="small"
+        variant="contained"
+        aria-label="outlined primary button group"
+      >
+        <Button
+          onClick={() => setValue('Production')}
+          color={value === 'Production' ? 'primary' : 'default'}
+          disableElevation={value === 'Production'}
+          disableRipple
+          className={classes.button}
+        >
+          Production
+        </Button>
+        <Button
+          onClick={() => setValue('Consumption')}
+          color={value === 'Consumption' ? 'primary' : 'default'}
+          disableElevation={value === 'Consumption'}
+          disableRipple
+          className={classes.button}
+        >
+          Consumption
+        </Button>
+      </ButtonGroup>
       <PieChart npbs={npbs} type={value} />
     </Card>
   );

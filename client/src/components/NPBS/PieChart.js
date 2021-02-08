@@ -22,7 +22,7 @@ const PieChart = ({ npbs, type }) => {
       const unit = d.data.map((values, i) => {
         return {
           source: values.source,
-          value: type === 'production' ? values.production : values.consumption,
+          value: type === 'Production' ? values.production : values.consumption,
           color: colors[i],
         };
       });
@@ -42,9 +42,11 @@ const PieChart = ({ npbs, type }) => {
     pieSeries.labels.template.disabled = true;
     pieSeries.ticks.template.disabled = true;
 
-    y.innerRadius = am4core.percent(40);
+    y.innerRadius = am4core.percent(50);
+    y.radius = am4core.percent(90);
     y.legend = new am4charts.Legend();
-    y.legend.position = 'right';
+
+    // y.legend.position = 'right';
     chart.current = y;
 
     return () => {
@@ -52,9 +54,7 @@ const PieChart = ({ npbs, type }) => {
     };
   });
 
-  return (
-    <div id="piechartdiv" style={{ width: '100%', height: '300px' }}></div>
-  );
+  return <div id="piechartdiv" style={{ width: '98%', height: '370px' }}></div>;
 };
 
 export default PieChart;

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: #220800;
 }
 #root {
   display: flex;

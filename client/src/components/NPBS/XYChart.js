@@ -83,7 +83,7 @@ const XYChart = ({ npbs, source }) => {
     };
   }, [source]);
 
-  return <div id="chartdiv" style={{ width: '100%', height: '300px' }} />;
+  return <div id="chartdiv" style={{ width: '100%', height: '390px' }} />;
 };
 
 export default XYChart;

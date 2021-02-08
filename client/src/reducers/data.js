@@ -1,30 +1,47 @@
-import {GET_NPBS, GET_CBS, GET_EMISSIONS, GET_EXPENDITURES} from '../actions/types'
+import {
+  GET_NPBS,
+  GET_CBS,
+  GET_EMISSIONS,
+  GET_EXPENDITURES,
+  GET_OUTAGE,
+  GET_GENERATION,
+} from '../actions/types';
 
 const initialState = {
   npbs: {
     data: [],
     loading: true,
-    error: {}
+    error: {},
   },
   cbs: {
     data: [],
     loading: true,
-    error: {}
+    error: {},
   },
   emissions: {
     data: [],
     loading: true,
-    error: {}
+    error: {},
   },
   expenditure: {
     data: [],
     loading: true,
-    error: {}
+    error: {},
   },
-}
+  generation: {
+    data: [],
+    loading: true,
+    error: {},
+  },
+  outage: {
+    data: [],
+    loading: true,
+    error: {},
+  },
+};
 
-export default function(state = initialState, action) {
-  const {type, payload} = action
+export default function (state = initialState, action) {
+  const { type, payload } = action;
 
   switch (type) {
     case GET_NPBS:
@@ -33,37 +50,55 @@ export default function(state = initialState, action) {
         npbs: {
           ...state.npbs,
           data: payload,
-          loading: false
-        }
-      }
+          loading: false,
+        },
+      };
     case GET_CBS:
       return {
         ...state,
         cbs: {
           ...state.cbs,
           data: payload,
-          loading: false
-        }
-      }
+          loading: false,
+        },
+      };
     case GET_EMISSIONS:
       return {
         ...state,
         emissions: {
           ...state.emissions,
           data: payload,
-          loading: false
-        }
-      }
+          loading: false,
+        },
+      };
     case GET_EXPENDITURES:
       return {
         ...state,
         expenditure: {
           ...state.expenditure,
           data: payload,
-          loading: false
-        }
-      }
+          loading: false,
+        },
+      };
+    case GET_GENERATION:
+      return {
+        ...state,
+        generation: {
+          ...state.generation,
+          data: payload,
+          loading: false,
+        },
+      };
+    case GET_OUTAGE:
+      return {
+        ...state,
+        outage: {
+          ...state.outage,
+          data: payload,
+          loading: false,
+        },
+      };
     default:
-      return state
+      return state;
   }
 }
