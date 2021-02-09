@@ -5,6 +5,9 @@ const RegionalGenerationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  states: {
+    type: Array,
+  },
   value: {
     type: Array,
     required: true,

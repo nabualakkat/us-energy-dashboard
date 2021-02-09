@@ -52,11 +52,9 @@ const useStyles = makeStyles((theme) => ({
 const DataTable = ({ npbs }) => {
   const classes = useStyles();
   const [value, setValue] = useState(moment(npbs[0].month));
-  console.log(value);
   const set = npbs.filter(
     (d) => moment(d.month).format('YYYY MM') === moment(value).format('YYYY MM')
   );
-  console.log(set);
   const rows = set[0].data;
   return (
     <Card className={classes.chartWrapper}>

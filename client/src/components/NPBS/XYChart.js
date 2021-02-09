@@ -19,14 +19,12 @@ const XYChart = ({ npbs, source }) => {
       const sourceData = d.data.filter(
         (sourceValue) => sourceValue.source === source
       );
-      console.log(sourceData.consumption);
       return {
         month: d.month,
         production: sourceData[0].production,
         consumption: sourceData[0].consumption,
       };
     });
-    console.log(data);
     x.data = data;
     x.responsive.enabled = true;
     let dateAxis = x.xAxes.push(new am4charts.DateAxis());

@@ -10,6 +10,7 @@ import {
   getExpenditures,
   getGeneration,
   getOutage,
+  getRegionalGeneration,
 } from '../actions/data';
 import XYChartWrapper from '../components/NPBS/XYChartWrapper';
 import PieChartWrapper from '../components/NPBS/PieChartWrapper';
@@ -18,6 +19,7 @@ import Emissions from '../components/data_cards/Emissions';
 import Expenditures from '../components/data_cards/Expenditures';
 import Generation from '../components/data_cards/Generation';
 import Outage from '../components/data_cards/Outage';
+import RegionalWrapper from '../components/Regional/RegionalWrapper';
 //Material-UI
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -39,10 +41,12 @@ export const Landing = ({
   getExpenditures,
   getGeneration,
   getOutage,
+  getRegionalGeneration,
   npbsLoading,
   cbsLoading,
   emissionsLoading,
   expenditureLoading,
+  regionalLoading,
 }) => {
   const classes = useStyles();
   useEffect(() => {
@@ -52,6 +56,7 @@ export const Landing = ({
     getExpenditures();
     getGeneration();
     getOutage();
+    getRegionalGeneration();
   }, [
     getNPBS,
     getCBS,
@@ -59,9 +64,14 @@ export const Landing = ({
     getEmissions,
     getGeneration,
     getOutage,
+    getRegionalGeneration,
   ]);
   const loading =
-    npbsLoading || cbsLoading || emissionsLoading || expenditureLoading;
+    npbsLoading ||
+    cbsLoading ||
+    emissionsLoading ||
+    expenditureLoading ||
+    regionalLoading;
 
   return loading ? (
     <CircularProgress className={classes.spinner} color="secondary" />
@@ -104,6 +114,20 @@ export const Landing = ({
           <XYChartWrapper />
         </GridListTile>
       </GridList>
+      <GridList
+        className={classes.list}
+        cellHeight={500}
+        spacing={0}
+        cols={6}
+        className={classes.npbsList}
+      >
+        <GridListTile className={classes.tile} cols={4}>
+          <RegionalWrapper />
+        </GridListTile>
+        <GridListTile className={classes.tile} cols={2}>
+          <DataTable />
+        </GridListTile>
+      </GridList>
     </div>
   );
 };
@@ -119,6 +143,7 @@ Landing.propTypes = {
   cbsLoading: PropTypes.bool.isRequired,
   emissionsLoading: PropTypes.bool.isRequired,
   expenditureLoading: PropTypes.bool.isRequired,
+  regionalLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -126,6 +151,7 @@ const mapStateToProps = (state) => ({
   cbsLoading: state.data.cbs.loading,
   emissionsLoading: state.data.cbs.loading,
   expenditureLoading: state.data.expenditure.loading,
+  regionalLoading: state.data.regional.loading,
 });
 
 export default connect(mapStateToProps, {
@@ -135,4 +161,5 @@ export default connect(mapStateToProps, {
   getExpenditures,
   getGeneration,
   getOutage,
+  getRegionalGeneration,
 })(Landing);

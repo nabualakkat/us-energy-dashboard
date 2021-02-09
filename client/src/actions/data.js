@@ -5,6 +5,7 @@ import {
   GET_EXPENDITURES,
   GET_GENERATION,
   GET_OUTAGE,
+  GET_REGIONALGENERATION,
 } from './types';
 import { setAlert } from './alert';
 import api from '../utils/api';
@@ -74,6 +75,17 @@ export const getOutage = () => async (dispatch) => {
     const res = await api.get('/outage');
     dispatch({
       type: GET_OUTAGE,
+      payload: res.data,
+    });
+  } catch (err) {}
+};
+
+export const getRegionalGeneration = () => async (dispatch) => {
+  try {
+    await api.post('/regionalgeneration');
+    const res = await api.get('/regionalgeneration');
+    dispatch({
+      type: GET_REGIONALGENERATION,
       payload: res.data,
     });
   } catch (err) {

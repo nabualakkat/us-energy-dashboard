@@ -5,6 +5,7 @@ import {
   GET_EXPENDITURES,
   GET_OUTAGE,
   GET_GENERATION,
+  GET_REGIONALGENERATION,
 } from '../actions/types';
 
 const initialState = {
@@ -34,6 +35,11 @@ const initialState = {
     error: {},
   },
   outage: {
+    data: [],
+    loading: true,
+    error: {},
+  },
+  regional: {
     data: [],
     loading: true,
     error: {},
@@ -94,6 +100,15 @@ export default function (state = initialState, action) {
         ...state,
         outage: {
           ...state.outage,
+          data: payload,
+          loading: false,
+        },
+      };
+    case GET_REGIONALGENERATION:
+      return {
+        ...state,
+        regional: {
+          ...state.regional,
           data: payload,
           loading: false,
         },
