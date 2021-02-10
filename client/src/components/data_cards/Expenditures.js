@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import moment from 'moment';
+
+//Local
+import DownloadButton from '../DownloadButton';
 
 //Material-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,6 +47,7 @@ export const Expenditures = ({ expenditures }) => {
   );
   return (
     <Card className={classes.card}>
+      <DownloadButton data={expenditures} filename="expenditure.csv" />
       <Typography align="center" variant="h6">
         Average Retail Price of Electricity
       </Typography>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -20,6 +20,7 @@ import Expenditures from '../components/data_cards/Expenditures';
 import Generation from '../components/data_cards/Generation';
 import Outage from '../components/data_cards/Outage';
 import RegionalWrapper from '../components/Regional/RegionalWrapper';
+import BarChartWrapper from '../components/CBS/BarChartWrapper';
 //Material-UI
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -49,6 +50,12 @@ export const Landing = ({
   regionalLoading,
 }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
   useEffect(() => {
     getNPBS();
     getCBS();
@@ -125,7 +132,7 @@ export const Landing = ({
           <RegionalWrapper />
         </GridListTile>
         <GridListTile className={classes.tile} cols={2}>
-          <DataTable />
+          <BarChartWrapper />
         </GridListTile>
       </GridList>
     </div>

@@ -5,6 +5,7 @@ import moment from 'moment';
 
 //Local
 import Map from './Map';
+import DownloadButton from '../DownloadButton';
 //Material-UI
 import { makeStyles, useTheme } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
@@ -40,6 +41,7 @@ const RegionalWrapper = ({ regional }) => {
   const [value, setValue] = useState('Production');
   return (
     <Card className={classes.chartWrapper}>
+      <DownloadButton data={regional} filename="regional-generation.csv" />
       <Typography className={classes.title} variant="h6">
         Regional Electricity Generation
       </Typography>

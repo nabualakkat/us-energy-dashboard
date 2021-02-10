@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 //Local
 import { getOutage } from '../../actions/data';
+import DownloadButton from '../DownloadButton';
 
 //Material-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -58,6 +59,7 @@ export const Outage = ({ getOutage, outage }) => {
   }, [getOutage]);
   const data = !outage.loading && (
     <React.Fragment>
+      <DownloadButton data={outage.data} filename="outage.csv" />
       <Typography align="center" variant="h6">
         Nuclear Capacity Outage
       </Typography>

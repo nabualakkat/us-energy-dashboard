@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 //Local
 import XYChart from './XYChart';
+import DownloadButton from '../DownloadButton';
 
 //Material-UI
 import { makeStyles, useTheme } from '@material-ui/core';
@@ -41,6 +42,7 @@ const XYChartWrapper = ({ npbs }) => {
   };
   return (
     <Card className={classes.chartWrapper}>
+      <DownloadButton data={npbs} filename="net-production.csv" />
       <FormControl
         size="small"
         className={classes.formControl}

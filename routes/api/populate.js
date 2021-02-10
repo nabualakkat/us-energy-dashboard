@@ -50,7 +50,7 @@ router.get('/', async (req, res) => {
               value: residentialSector.data[i][1],
             },
             {
-              sector: 'Trasportation',
+              sector: 'Transportation',
               value: transportationSector.data[i][1],
             },
           ],

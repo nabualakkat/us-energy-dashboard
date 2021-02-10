@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 //Local
 import { getGeneration } from '../../actions/data';
+import DownloadButton from '../DownloadButton';
 
 //Material-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,6 +17,7 @@ import TrendingDownIcon from '@material-ui/icons/TrendingDown';
 const useStyles = makeStyles((theme) => ({
   card: {
     margin: '1rem 0.5rem',
+    position: 'relative',
   },
   valueContainer: {
     display: 'flex',
@@ -32,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const Generation = ({ getGeneration, generation }) => {
   const classes = useStyles();
+
+  //TREND AND VALUE
   const percentGrowth =
     !generation.loading &&
     (
@@ -52,6 +56,8 @@ export const Generation = ({ getGeneration, generation }) => {
       <span>{percentGrowth * -1}%</span>
     </div>
   );
+  //DOWNLOAD
+
   useEffect(() => {
     setInterval(() => {
       getGeneration();
@@ -78,7 +84,10 @@ export const Generation = ({ getGeneration, generation }) => {
       {generation.loading ? (
         <CircularProgress className={classes.loading} color="secondary" />
       ) : (
-        data
+        <React.Fragment>
+          <DownloadButton data={generation.data} filename="generation.csv" />
+          {data}
+        </React.Fragment>
       )}
     </Card>
   );

@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+//Local
+import DownloadButton from '../DownloadButton';
+
 //Material-UI
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -44,6 +47,7 @@ export const Emissions = ({ emissions }) => {
   );
   return (
     <Card className={classes.card}>
+      <DownloadButton data={emissions} filename="emissions.csv" />
       <Typography align="center" variant="h6">
         Annual CO2 Emissions
       </Typography>

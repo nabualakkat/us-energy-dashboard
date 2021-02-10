@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 //Local
-import XYChart from './XYChart';
+import BarChart from './BarChart';
+import DownloadButton from '../DownloadButton';
 
 //Material-UI
 import { makeStyles, useTheme } from '@material-ui/core';
@@ -32,19 +33,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const XYChartWrapper = ({ npbs }) => {
+const BarChartWrapper = ({ cbs }) => {
   const classes = useStyles();
-  const [source, setSource] = useState('Coal');
-
-  const handleChange = (e) => {
-    setSource(e.target.value);
-  };
   return (
     <Card className={classes.chartWrapper}>
+      <DownloadButton data={cbs} filename="consumption-by-sector.csv" />
       <Typography className={classes.title} variant="h6">
-        {`Production / Consumption of ${source}`}
+        Consumption by Sector
       </Typography>
-      <BarChart cbs={cbs} source={source} />
+      <BarChart cbs={cbs} />
     </Card>
   );
 };
