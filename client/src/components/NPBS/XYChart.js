@@ -21,8 +21,6 @@ function am4themes_darkTheme(target) {
 am4core.useTheme(am4themes_animated);
 
 const XYChart = ({ npbs, source, theme }) => {
-  console.log(theme);
-
   const chart = useRef(null);
 
   useLayoutEffect(() => {

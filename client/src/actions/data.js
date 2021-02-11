@@ -22,7 +22,6 @@ export const getNPBS = () => async (dispatch) => {
   }
 };
 export const getCBS = () => async (dispatch) => {
-  console.log('cbs called');
   try {
     const res = await api.get('/data/consumption');
     dispatch({

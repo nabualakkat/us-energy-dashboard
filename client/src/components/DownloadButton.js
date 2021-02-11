@@ -4,6 +4,7 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import { CSVLink } from 'react-csv';
 import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   download: {
@@ -122,18 +123,18 @@ export const DownloadButton = ({ data, filename }) => {
       }
     }
   }, [data, filename, setHeaders, setDataToConvert]);
-  console.log(filename);
-  console.log(dataToConvert);
   return dataToConvert !== undefined ? (
-    <IconButton
-      className={classes.download}
-      component={CSVLink}
-      data={dataToConvert}
-      headers={headers}
-      filename={filename}
-    >
-      <GetAppIcon />
-    </IconButton>
+    <Tooltip title="Export Data" aria-label="export data">
+      <IconButton
+        className={classes.download}
+        component={CSVLink}
+        data={dataToConvert}
+        headers={headers}
+        filename={filename}
+      >
+        <GetAppIcon />
+      </IconButton>
+    </Tooltip>
   ) : (
     <IconButton>
       <GetAppIcon />

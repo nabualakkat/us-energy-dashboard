@@ -53,9 +53,6 @@ const Map = ({ regional }) => {
     const states = regionData[0].states;
     return states;
   };
-  console.log(intervalLength);
-  console.log(valueArray);
-  console.log(color(1138349));
   useLayoutEffect(() => {
     let map = am4core.create('mapdiv', am4maps.MapChart);
     map.geodata = am4geodata_usaAlbersLow;

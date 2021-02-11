@@ -66,7 +66,7 @@ export const Generation = ({ getGeneration, generation }) => {
   const data = !generation.loading && (
     <React.Fragment>
       <Typography align="center" variant="h6">
-        Net Generation
+        Net Generation per Hour
       </Typography>
       <div className={classes.valueContainer}>
         <Typography className={classes.value} align="center" variant="h2">

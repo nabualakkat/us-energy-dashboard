@@ -11,7 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness5Icon from '@material-ui/icons/Brightness5';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   settingsButton: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavBar = ({ setAlert, theme, handleClick, setTheme }) => {
+const NavBar = ({ theme, handleClick, setTheme }) => {
   const classes = useStyles();
 
   return (
@@ -28,15 +29,20 @@ const NavBar = ({ setAlert, theme, handleClick, setTheme }) => {
         <Typography variant="h5" color="inherit">
           US Energy Dashboard
         </Typography>
-        <IconButton
-          onClick={() => {
-            handleClick();
-            setTheme(theme ? 'dark' : 'light');
-          }}
-          className={classes.settingsButton}
+        <Tooltip
+          title={theme ? 'Dark Mode' : 'Light Mode'}
+          aria-label={theme ? 'dark mode' : 'light mode'}
         >
-          {theme ? <Brightness4Icon /> : <Brightness5Icon />}
-        </IconButton>
+          <IconButton
+            onClick={() => {
+              handleClick();
+              setTheme(theme ? 'dark' : 'light');
+            }}
+            className={classes.settingsButton}
+          >
+            {theme ? <Brightness4Icon /> : <Brightness5Icon />}
+          </IconButton>
+        </Tooltip>
       </Toolbar>
     </AppBar>
   );

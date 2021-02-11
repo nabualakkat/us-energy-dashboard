@@ -61,7 +61,7 @@ export const Outage = ({ getOutage, outage }) => {
     <React.Fragment>
       <DownloadButton data={outage.data} filename="outage.csv" />
       <Typography align="center" variant="h6">
-        Nuclear Capacity Outage
+        Daily Nuclear Capacity Outage
       </Typography>
       <div className={classes.valueContainer}>
         <Typography className={classes.value} align="center" variant="h2">

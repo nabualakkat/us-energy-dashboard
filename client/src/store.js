@@ -3,7 +3,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-
 const middleware = [thunk];
 
 const store = createStore(
@@ -13,6 +12,8 @@ const store = createStore(
 
 let currentState = store.getState();
 
-store.subscribe(() => console.log(currentState));
+store.subscribe(() => {
+  currentState = store.getState();
+});
 
 export default store;

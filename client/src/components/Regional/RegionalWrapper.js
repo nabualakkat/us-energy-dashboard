@@ -43,7 +43,7 @@ const RegionalWrapper = ({ regional }) => {
     <Card className={classes.chartWrapper}>
       <DownloadButton data={regional} filename="regional-generation.csv" />
       <Typography className={classes.title} variant="h6">
-        Regional Electricity Generation
+        Daily Regional Electricity Generation
       </Typography>
 
       <Map regional={regional} />

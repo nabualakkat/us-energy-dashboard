@@ -33,7 +33,6 @@ const BarChart = ({ cbs, theme }) => {
 
     x.paddingRight = 20;
     const data = cbs[0].data;
-    console.log(data);
     x.data = data;
     x.responsive.enabled = true;
     let valueAxis = x.yAxes.push(new am4charts.ValueAxis());
@@ -46,7 +45,8 @@ const BarChart = ({ cbs, theme }) => {
     x.responsive.enabled = true;
     let series = x.series.push(new am4charts.ColumnSeries());
     series.name = 'Consumption';
-    series.columns.template.fill = am4core.color('#104547'); // fill
+    series.columns.template.tooltipText = '{valueY}';
+    series.columns.template.fill = am4core.color('#4CAF50'); // fill
     series.dataFields.valueY = 'value';
     series.dataFields.categoryX = 'sector';
 
