@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-//Local
-import PieChart from './PieChart';
 //Material-UI
-import { makeStyles, useTheme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 import Card from '@material-ui/core/Card';
 import Table from '@material-ui/core/Table';

@@ -22,10 +22,12 @@ import Outage from '../components/data_cards/Outage';
 import RegionalWrapper from '../components/Regional/RegionalWrapper';
 import BarChartWrapper from '../components/CBS/BarChartWrapper';
 //Material-UI
-import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+
 const useStyles = makeStyles((theme) => ({
   spinner: {
     margin: 'auto',
@@ -50,8 +52,10 @@ export const Landing = ({
   regionalLoading,
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const small = useMediaQuery(theme.breakpoints.down('sm'));
+  const medium = useMediaQuery(theme.breakpoints.down('md'));
   const [open, setOpen] = useState(false);
-
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -87,20 +91,20 @@ export const Landing = ({
       <GridList
         cellHeight={120}
         spacing={0}
-        cols={8}
+        cols={medium ? 4 : 8}
         className={classes.npbsList}
       >
-        <GridListTile className={classes.tile} cols={2}>
+        <GridListTile className={classes.tile} cols={small ? 4 : 2}>
           <Generation />
         </GridListTile>
-        <GridListTile className={classes.tile} cols={2}>
+        <GridListTile className={classes.tile} cols={small ? 4 : 2}>
           <Outage />
         </GridListTile>
-        <GridListTile className={classes.tile} cols={2}>
+        <GridListTile className={classes.tile} cols={small ? 4 : 2}>
           <Expenditures />
         </GridListTile>
 
-        <GridListTile className={classes.tile} cols={2}>
+        <GridListTile className={classes.tile} cols={small ? 4 : 2}>
           <Emissions />
         </GridListTile>
       </GridList>
@@ -108,16 +112,22 @@ export const Landing = ({
         className={classes.list}
         cellHeight={500}
         spacing={0}
-        cols={10}
+        cols={medium ? 4 : 10}
         className={classes.npbsList}
       >
-        <GridListTile className={classes.tile} cols={3}>
+        <GridListTile
+          className={classes.tile}
+          cols={small ? 4 : medium ? 2 : 3}
+        >
           <PieChartWrapper />
         </GridListTile>
-        <GridListTile className={classes.tile} cols={2.5}>
+        <GridListTile
+          className={classes.tile}
+          cols={small ? 4 : medium ? 2 : 2.5}
+        >
           <DataTable />
         </GridListTile>
-        <GridListTile className={classes.tile} cols={4.5}>
+        <GridListTile className={classes.tile} cols={medium ? 4 : 4.5}>
           <XYChartWrapper />
         </GridListTile>
       </GridList>
@@ -128,10 +138,10 @@ export const Landing = ({
         cols={6}
         className={classes.npbsList}
       >
-        <GridListTile className={classes.tile} cols={4}>
+        <GridListTile className={classes.tile} cols={medium ? 6 : 4}>
           <RegionalWrapper />
         </GridListTile>
-        <GridListTile className={classes.tile} cols={2}>
+        <GridListTile className={classes.tile} cols={medium ? 6 : 2}>
           <BarChartWrapper />
         </GridListTile>
       </GridList>
