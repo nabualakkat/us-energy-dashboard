@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://nabhasalakkat:GZRAKa7LDpGgJacb@usenergydata.omnry.mongodb.net/test?retryWrites=true",
+  "eiaBaseURI": "https://api.eia.gov/series/?api_key=209b4d0e846e8342cbc03dffe846c056"
+}
