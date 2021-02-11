@@ -5,6 +5,10 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+//Material-UI
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+
 function am4themes_lightTheme(target) {
   if (target instanceof am4core.InterfaceColorSet) {
     target.setFor('text', am4core.color('#000000'));
@@ -20,6 +24,8 @@ am4core.useTheme(am4themes_animated);
 
 const BarChart = ({ cbs, theme }) => {
   const chart = useRef(null);
+  const materialTheme = useTheme();
+  const matches = useMediaQuery(materialTheme.breakpoints.down('sm'));
 
   useLayoutEffect(() => {
     if (theme === 'light') {
@@ -41,6 +47,13 @@ const BarChart = ({ cbs, theme }) => {
     let categoryAxis = x.xAxes.push(new am4charts.CategoryAxis());
     categoryAxis.dataFields.category = 'sector';
     categoryAxis.renderer.minGridDistance = 30;
+    if (matches) {
+      categoryAxis.renderer.labels.template.horizontalCenter = 'right';
+      categoryAxis.renderer.labels.template.verticalCenter = 'middle';
+      categoryAxis.renderer.labels.template.rotation = 270;
+    } else {
+      categoryAxis.renderer.labels.template.rotation = 0;
+    }
 
     x.responsive.enabled = true;
     let series = x.series.push(new am4charts.ColumnSeries());
@@ -55,7 +68,7 @@ const BarChart = ({ cbs, theme }) => {
     return () => {
       x.dispose();
     };
-  }, [theme, cbs]);
+  }, [theme, cbs, matches]);
 
   return <div id="bardiv" style={{ width: '100%', height: '390px' }} />;
 };
