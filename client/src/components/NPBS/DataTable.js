@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   cell: {
     paddingInline: 0,
     paddingBlock: '0.75rem',
+    [theme.breakpoints.down('xs')]: {
+      paddingBlock: '0.5rem',
+    },
   },
 }));
 
