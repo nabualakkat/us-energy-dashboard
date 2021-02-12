@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto%',
     marginBottom: '1rem',
     boxSizing: 'border-box',
+    [theme.breakpoints.down('xs')]: {
+      paddingBottom: '0.5rem',
+    },
   },
   cell: {
     paddingInline: 0,
