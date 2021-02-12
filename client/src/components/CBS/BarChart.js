@@ -25,7 +25,7 @@ am4core.useTheme(am4themes_animated);
 const BarChart = ({ cbs, theme }) => {
   const chart = useRef(null);
   const materialTheme = useTheme();
-  const matches = useMediaQuery(materialTheme.breakpoints.down('sm'));
+  const matchlg = useMediaQuery(materialTheme.breakpoints.down('lg'));
 
   useLayoutEffect(() => {
     if (theme === 'light') {
@@ -47,7 +47,7 @@ const BarChart = ({ cbs, theme }) => {
     let categoryAxis = x.xAxes.push(new am4charts.CategoryAxis());
     categoryAxis.dataFields.category = 'sector';
     categoryAxis.renderer.minGridDistance = 30;
-    if (matches) {
+    if (matchlg) {
       categoryAxis.renderer.labels.template.horizontalCenter = 'right';
       categoryAxis.renderer.labels.template.verticalCenter = 'middle';
       categoryAxis.renderer.labels.template.rotation = 270;
@@ -68,7 +68,7 @@ const BarChart = ({ cbs, theme }) => {
     return () => {
       x.dispose();
     };
-  }, [theme, cbs, matches]);
+  }, [theme, cbs, matchlg]);
 
   return <div id="bardiv" style={{ width: '100%', height: '390px' }} />;
 };
